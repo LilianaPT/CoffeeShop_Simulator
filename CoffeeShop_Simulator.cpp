@@ -27,6 +27,7 @@ const double membership = 0.05;
 int getValidCups();
 bool getValidMembership();
 void printReceipt(double pricePerCup, int cupsPurchased, double subTotal, double discount, double tax, double finalTotal);
+void calculations(double pricePerCup, double &subTotal, double &discount, double &tax, double &finalTotal, bool isMember, int cups);
 
 int main()
 {
@@ -58,17 +59,7 @@ int main()
             cout << endl;
             isMember = getValidMembership();
             cout << endl;
-            subTotal = espressoP * cups;    //Calculate sub total
-            //Apply 5% discount if member
-            if (isMember == true) {
-                discount = subTotal * membership;
-            }
-            else {
-                discount = 0.0;
-            }
-            //Calculate tax and final total
-            tax = static_cast<int>((subTotal - discount) * 0.06 * 100.0) / 100.0;
-            finalTotal = (subTotal - discount) + tax;
+            calculations(espressoP, subTotal, discount, tax, finalTotal, isMember, cups);
             printReceipt(espressoP, cups, subTotal, discount, tax, finalTotal);
             break;
         case 2:                                 //Latte calculation
@@ -76,7 +67,7 @@ int main()
             cout << endl;
             isMember = getValidMembership();
             cout << endl;
-            subTotal = latteP * cups;
+            /*subTotal = latteP * cups;
             if (isMember == true) {
                 discount = subTotal * membership;
             }
@@ -85,7 +76,8 @@ int main()
             }
 
             tax = static_cast<int>((subTotal - discount) * 0.06 * 100.0) / 100.0;
-            finalTotal = (subTotal - discount) + tax;
+            finalTotal = (subTotal - discount) + tax;*/
+            calculations(latteP, subTotal, discount, tax, finalTotal, isMember, cups);
             printReceipt(latteP, cups, subTotal, discount, tax, finalTotal);
             break;
         case 3:                                 //Cappuccino calculation
@@ -93,7 +85,7 @@ int main()
             cout << endl;
             isMember = getValidMembership();
             cout << endl;
-            subTotal = cappuP * cups;
+            /*subTotal = cappuP * cups;
             if (isMember == true) {
                 discount = subTotal * membership;
             }
@@ -102,7 +94,8 @@ int main()
             }
 
             tax = static_cast<int>((subTotal - discount) * 0.06 * 100.0) / 100.0;
-            finalTotal = (subTotal - discount) + tax;
+            finalTotal = (subTotal - discount) + tax;*/
+            calculations(cappuP, subTotal, discount, tax, finalTotal, isMember, cups);
             printReceipt(cappuP, cups, subTotal, discount, tax, finalTotal);
             break;
         case 4:                                 //Mocha calculation
@@ -110,7 +103,7 @@ int main()
             cout << endl;
             isMember = getValidMembership();
             cout << endl;
-            subTotal = mochaP * cups;
+            /*subTotal = mochaP * cups;
             if (isMember == true) {
                 discount = subTotal * membership;
             }
@@ -119,7 +112,8 @@ int main()
             }
 
             tax = static_cast<int>((subTotal - discount) * 0.06 * 100.0) / 100.0;
-            finalTotal = (subTotal - discount) + tax;
+            finalTotal = (subTotal - discount) + tax;*/
+            calculations(mochaP, subTotal, discount, tax, finalTotal, isMember, cups);
             printReceipt(mochaP, cups, subTotal, discount, tax, finalTotal);
             break;
         case 0:         //Exit the loop
@@ -174,6 +168,20 @@ bool getValidMembership() {
     }
 }
 
+void calculations(double pricePerCup, double &subTotal, double &discount, double &tax, double &finalTotal, bool isMember, int cups) {
+    subTotal = pricePerCup * cups;    //Calculate sub total
+    //Apply 5% discount if member
+    if (isMember == true) {
+        discount = subTotal * membership;
+    }
+    else {
+        discount = 0.0;
+    }
+    //Calculate tax and final total
+    tax = static_cast<int>((subTotal - discount) * 0.06 * 100.0) / 100.0;
+    finalTotal = (subTotal - discount) + tax;
+}
+
 /*This function will displays the receipt using calculated values, using
 all necessary order details like price, quantity, subtotal, tax and final total.*/
 void printReceipt(double pricePerCup, int cupsPurchased, double subTotal, double discount, double tax, double finalTotal) {
@@ -185,6 +193,8 @@ void printReceipt(double pricePerCup, int cupsPurchased, double subTotal, double
     cout << "Tax (6%): $" << tax << endl;
     cout << fixed << showpoint << setprecision(2) << "Total: $" << finalTotal << endl;
 }
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
