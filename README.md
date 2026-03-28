@@ -30,10 +30,4 @@ A C++ console application that simulates a coffee shop point-of-sale system. Thi
   - Pass-by-reference functions for calculations.
   - Value-returning functions for input validation.
   - `do-while` loops and `switch` statements for program flow.
-  - Fixed-point formatting for currency.
-
-## 🚀 How to Run
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com
+  - Fixed-point formatting for 
